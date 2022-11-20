@@ -1,0 +1,12 @@
+#!/bin/sh
+current_volume=$(pamixer --get-volume)
+bak_volume=$(cat volume)
+
+if [ $current_volume == 0 ]
+then
+	pamixer --set-volume $bak_volume
+else
+	echo $current_volume > ./volume
+	pamixer --set-volume 0
+fi
+
